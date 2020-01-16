@@ -1,0 +1,26 @@
+<h1>TestSuites </h1>
+  
+<table>
+  <tr>
+    <th>NAME</th>
+    <th>address</th>
+    <th>type </th>
+  </tr>
+
+  <% @testsuites.each do |testsuite| %>
+		
+		<tr>
+      <td><%= testsuite.TestName %></td>
+      <td><%= testsuite.address %></td>
+      <td><%= testsuite.cat %></td>
+		</tr>
+
+  <% end %>
+</table>
+
+<%= link_to 'Add New Test', new_testsuite_path %>
+
+~                                                                                                                                                                                                                                                                                  
+~                                                                                                                                                                                                                                                                                  
+~                                                                                                                                                                                                                                                                                  
+~                                                                                                     

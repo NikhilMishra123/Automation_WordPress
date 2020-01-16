@@ -1,0 +1,24 @@
+<h1>Add New Test</h1>
+
+<%= form_with scope: :testsuite, url: testsuite_path, local: true do |form| %>
+	<p>
+    <%= form.label :TestName %><br>
+    <%= form.text_field :TestName %>
+  </p>
+
+  <p>
+    <%= form.label :address %><br>
+    <%= form.text_area :address %>
+  </p>
+
+	<p>
+    <%= form.label :type %><br>
+    <%= form.text_area :type %>
+  </p>
+
+
+  <p>
+    <%= form.submit %>
+  </p>
+
+<% end %>
