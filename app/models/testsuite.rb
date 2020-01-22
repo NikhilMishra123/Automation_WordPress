@@ -1,25 +1,13 @@
 class Testsuite < ApplicationRecord
 	has_many :results, dependent: :destroy
 
-	def self.getTestName(test_ids)
-		test_names = Array.new
-		for i in test_ids do 
-			test_names = Testsuite.select(:TestName).where(id: i)
+	def self.getSelectedTests(test_ids)
+		selected_tests = Array.new
+		test_ids.each do |test_id| 
+			@testsuite= Testsuite.where(id: test_id)
+			selected_tests.push(@testsuite[0])
 		end
-		return test_names
+		return selected_tests
 	end
-
-
-	def self.getTestHash(test_ids)
-    hash_test = Hash[test_ids.map {|x| [x, nil]}]
-
-
-    for i in test_ids do
-      hash_test[i] = Testsuite.select(:TestName).where(id: i)
-    end
-    return hash_test
-
-  end
-
 
 end

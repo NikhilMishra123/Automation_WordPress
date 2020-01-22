@@ -1,12 +1,12 @@
 class SitesController < ApplicationController
 
 	def index
-    @sites = Sites.all
+    @sites = Site.all
   end
 
 
   def show
-    @site = Sites.find(params[:id])
+    @sites = Site.find(params[:id])
   end
 
   def new
@@ -15,7 +15,7 @@ class SitesController < ApplicationController
 		Error here  
 =end 
   def ab
-		debugger
+		#debugger
     @sites  = Site.new(site_params)
     @sites.save
     redirect_to "/sites/#{@sites.id}"

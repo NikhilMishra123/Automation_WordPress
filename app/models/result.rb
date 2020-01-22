@@ -2,24 +2,24 @@ class Result < ApplicationRecord
   belongs_to :testsuite
   belongs_to :site
 
-	def self.fetchPreviousResult(test_ids , site_URL)
-		
-		prev_result = Hash[test_ids.map {|x| [x, nil]}]
-		for i in test_ids do
-			prev_result[i]= select( :TestResult ).where(site: site_URL ,testsuite: i).order(:id ).last
+	#case -- if no previous testcase found :: not handled yet 
+	def self.fetchPreviousResult(selected_site , selected_tests, test_ids)		
+		prev_results =  { }
+		 selected_tests.each do |test|
+			@result = Result.where(site: selected_site, testsuite: test).order(:id ).last
+			prev_results[test.id] = (@result != nil)? @result.TestResult : 'Not Found'
 		end
-		return prev_result
+		return prev_results
 	end
-	i
-	def self.save_result(results, test_id_to_name, site_URL)
-			test_id_to_name.each do |key, value|
-				Result.create(
-						testsuite: key,
-						site: site_URL,
-						TestResult: value
-				);
+	
+	def self.save_result(selected_site, selected_tests, results)	
+		selected_tests.each do |test|
+			Result.create(
+				:testsuite => test,
+				:site => selected_site,
+				:TestResult => results[test.TestName]
+			);
 			end
 	end
 
-	#	https://apidock.com/rails/ActiveRecord/Base/create/class
 end
