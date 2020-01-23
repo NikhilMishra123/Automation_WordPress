@@ -12,7 +12,8 @@ class TestwebController < ApplicationController
 		#site_URL = @params[:query].except(:siteURL)
 		site_URL = "http://127.0.0.1/"
 		# 6 for hello test  
-		test_ids= ['1']
+		#test_ids= ['1']
+		test_ids=['6']
 		debugger
 		selected_site= Site.getSelectedSite(1)
 		debugger
