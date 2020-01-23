@@ -11,13 +11,19 @@ class TestwebController < ApplicationController
 		#tests_ids = @params[:query].except(:testId)
 		#site_URL = @params[:query].except(:siteURL)
 		site_URL = "http://127.0.0.1/"
-		test_ids= ['6']
-
+		# 6 for hello test  
+		test_ids= ['1']
+		debugger
 		selected_site= Site.getSelectedSite(1)
+		debugger
 		selected_tests  = Testsuite.getSelectedTests(test_ids)
+		debugger
 		results = ::RunProcess.executeTest(selected_site, selected_tests)
+		debugger
 		prev_results = Result.fetchPreviousResult(selected_site, selected_tests,test_ids)
+		debugger
 		Result.save_result(selected_site,selected_tests,results)
+		debugger
 		@finalResult = ::RunProcess.getfinalResult(selected_tests,prev_results,results)
 		
 		debugger

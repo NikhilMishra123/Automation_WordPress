@@ -8,6 +8,6 @@ Rails.application.routes.draw do
 	post 'testsuite/ab', to: 'testsuite#ab'
 	post 'sites/ab' , to: 'sites#ab'
 	post 'testweb/run' , to: 'testweb#run'
-	get  'testweb/display' ,to: 'testweb#display'
-
+	get  'testweb/display' , to: 'testweb#display'
+	get  'testweb/failed' , to: 'testweb#failed'
 end

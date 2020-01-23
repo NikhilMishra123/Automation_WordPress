@@ -17,7 +17,7 @@ class RunProcess < ApplicationRecord
 				"siteURL" => selected_site.siteURL,
 				"testSuites" => regex_test_pattern
 			}
-    	response = HTTParty.get( API_URL , :body => body )
+			response = HTTParty.get( API_URL , :body => body )
 		  result_hash = JSON.parse(response.body);		
 			return result_hash
 		end
@@ -35,20 +35,4 @@ class RunProcess < ApplicationRecord
       end
       return @finalResult
     end
-=begin
-		def self.getfinalResult(selected_tests, prev_results, results)
-			length = selected_tests.length
-			@finalResult = Array.new(length) { Array.new(4) }
-			i=0
-			selected_tests.each do|test|
-				@finalResult[i][0]=test.id
-        @finalResult[i][1]=test.TestName
-        @finalResult[i][2]=prev_results[test.id]
-        @finalResult[i][3]=results[test.TestName]
-				i=i+1
-			end
-			return @finalResult
-		end
-=end
-
 end

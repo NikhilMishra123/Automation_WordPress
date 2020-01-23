@@ -1,13 +1,12 @@
 class Result < ApplicationRecord
   belongs_to :testsuite
   belongs_to :site
-
-	#case -- if no previous testcase found :: not handled yet 
+ 
 	def self.fetchPreviousResult(selected_site , selected_tests, test_ids)		
 		prev_results =  { }
 		 selected_tests.each do |test|
-			@result = Result.where(site: selected_site, testsuite: test).order(:id ).last
-			prev_results[test.id] = (@result != nil)? @result.TestResult : 'Not Found'
+			@result = Result.select(:id, :TestResult).where(site: selected_site, testsuite: test).order(:id ).last
+			prev_results[test.id] = (@result != nil)? @result.TestResult : 'Never Tested'
 		end
 		return prev_results
 	end
