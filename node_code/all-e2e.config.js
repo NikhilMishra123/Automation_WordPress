@@ -1,10 +1,25 @@
 
+
+/*
+const path = require( 'path' );
+const { hasBabelConfig } = require( './node_modules/@wordpress/scripts/utils' )
+*/
 const config = require( '@wordpress/scripts/config/jest-e2e.config' );
 
 const jestE2EConfig = {
-		 _: [],
-		 ...config ,
-		 setupFilesAfterEnv: ['<rootDir>/config/bootstrap.js',],
+	/*
+		preset: 'jest-puppeteer',
+ 		testPathIgnorePatterns: [ '/node_modules/', '/wordpress/' ],
+		reporters:
+    'TRAVIS' in process.env && 'CI' in process.env ?
+      [
+        '@wordpress/jest-preset-default/scripts/travis-fold-passes-reporter.js',
+      ] :
+      undefined,
+	*/
+		_: [],
+		...config ,
+		setupFilesAfterEnv: ['<rootDir>/config/bootstrap.js',],
     version: undefined,
     v: undefined,
     all: undefined,
@@ -66,6 +81,12 @@ const jestE2EConfig = {
     prettierPath: undefined,
     '$0': 'node_modules/@wordpress/scripts/scripts/bv.js'
   }
-
+	/*
+if ( ! hasBabelConfig() ) {
+  jestE2EConfig.transform = {
+    '^.+\\.[jt]sx?$': path.join( __dirname, 'babel-transform' ),
+  };
+}
+*/
 module.exports = jestE2EConfig;
 

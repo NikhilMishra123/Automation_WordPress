@@ -3,7 +3,6 @@ require 'json'
 
 
 class RunProcess < ApplicationRecord
-	
 		API_URL  = 'http://127.0.0.1:8080'
 
 		def self.executeTest(selected_site,selected_tests)
@@ -18,18 +17,17 @@ class RunProcess < ApplicationRecord
 				"testSuites" => regex_test_pattern
 			}
 			response = HTTParty.get( API_URL , :body => body )
-		  result_hash = JSON.parse(response.body);		
-			return result_hash
+		  results = JSON.parse(response.body);		
+			return results
 		end
-
-
-		 def self.getfinalResult(selected_tests, prev_results, results)
+		
+		def self.combineResults(selected_tests, previous_results, results)
       @finalResult = Array.new
       selected_tests.each do|test|
 				@finalResult.push([
 													test.id,
 													test.TestName,
-													prev_results[test.id],
+													previous_results[test.TestName],
 													results[test.TestName]
 				])
       end
