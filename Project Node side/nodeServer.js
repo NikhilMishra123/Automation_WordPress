@@ -11,7 +11,7 @@ app.get('/', function (request, response) {
  	const testConfig = {
   	  testMatch: [ testRegex ]
   }
-	runTest(testConfig, siteURL).then(result => {
+	runTest(testConfig, siteURL ).then(result => {
         JSON.stringify(results);
 				response.send(results);
     });

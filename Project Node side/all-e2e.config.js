@@ -1,5 +1,5 @@
 const path = require( 'path' );
-const { hasBabelConfig } = require( './../../node_modules/@wordpress/scripts/utils' )
+const { hasBabelConfig } = require( './node_modules/@wordpress/scripts/utils' )
 
 const jestE2EConfig = {
 	
@@ -77,7 +77,7 @@ const jestE2EConfig = {
 
 if ( ! hasBabelConfig() ) {
   jestE2EConfig.transform = {
-    '^.+\\.[jt]sx?$': '/home/nikhil/wordpress-develop/node_modules/@wordpress/scripts/config/babel-transform',
+    '^.+\\.[jt]sx?$': path.join( __dirname,'node_modules/@wordpress/scripts/config/babel-transform'),
   };
 }
 module.exports = jestE2EConfig;
