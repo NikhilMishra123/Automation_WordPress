@@ -1,4 +1,4 @@
-async function executeTest(testConfig) {
+async function executeTest(testConfig, siteURL) {
   process.env.BABEL_ENV = 'test';
   process.env.NODE_ENV = 'test';
   process.on( 'unhandledRejection', ( err ) => {
@@ -24,13 +24,12 @@ async function executeTest(testConfig) {
     WP_PASSWORD: '--wordpress-password',
   };
 
-  Object.entries( configsMapping ).forEach( ( [ envKey, argName ] ) => {
-    if ( hasArgInCLI( argName ) ) {
-      process.env[ envKey ] = getArgFromCLI( argName );
+	Object.entries( configsMapping ).forEach( ( [ envKey, argName ] ) => {
+		if ( envKey.localeCompare('WP_BASE_URL')==0 ) {
+		      process.env[ envKey ] = siteURL;
     }
-  });
-  //const con = require(fromConfigRoot('all-e2e.config.js'));
-  const allConfig = require('./tests/e2e/all-e2e.config.js')
+	});
+	const allConfig = require('./tests/e2e/all-e2e.config.js')
   const jestConfig = {
       ...allConfig ,
 		  ...testConfig

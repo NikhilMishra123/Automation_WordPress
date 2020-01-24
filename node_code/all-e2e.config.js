@@ -1,13 +1,8 @@
-
-
-/*
 const path = require( 'path' );
-const { hasBabelConfig } = require( './node_modules/@wordpress/scripts/utils' )
-*/
-const config = require( '@wordpress/scripts/config/jest-e2e.config' );
+const { hasBabelConfig } = require( './../../node_modules/@wordpress/scripts/utils' )
 
 const jestE2EConfig = {
-	/*
+	
 		preset: 'jest-puppeteer',
  		testPathIgnorePatterns: [ '/node_modules/', '/wordpress/' ],
 		reporters:
@@ -16,9 +11,7 @@ const jestE2EConfig = {
         '@wordpress/jest-preset-default/scripts/travis-fold-passes-reporter.js',
       ] :
       undefined,
-	*/
 		_: [],
-		...config ,
 		setupFilesAfterEnv: ['<rootDir>/config/bootstrap.js',],
     version: undefined,
     v: undefined,
@@ -78,15 +71,14 @@ const jestE2EConfig = {
     filter: undefined,
     maxConcurrency: 5,
     notifyMode: 'failure-change',
-    prettierPath: undefined,
-    '$0': 'node_modules/@wordpress/scripts/scripts/bv.js'
+		prettierPath: undefined,
+		'$0': 'process-test.js'	
   }
-	/*
+
 if ( ! hasBabelConfig() ) {
   jestE2EConfig.transform = {
-    '^.+\\.[jt]sx?$': path.join( __dirname, 'babel-transform' ),
+    '^.+\\.[jt]sx?$': '/home/nikhil/wordpress-develop/node_modules/@wordpress/scripts/config/babel-transform',
   };
 }
-*/
 module.exports = jestE2EConfig;
 

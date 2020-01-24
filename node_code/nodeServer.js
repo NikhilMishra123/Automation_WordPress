@@ -11,7 +11,7 @@ app.get('/', function (request, response) {
  	const testConfig = {
   	  testMatch: [ testRegex ]
   }
-	runTest(testConfig).then(result => {
+	runTest(testConfig, siteURL ).then(result => {
         JSON.stringify(results);
 				response.send(results);
     });
@@ -21,10 +21,10 @@ var server = app.listen(8080, function () {
     console.log('Server Running at port 8080....... ');
 });
 
-async function runTest(testConfig)
+async function runTest(testConfig, siteURL)
 {
   var execute = require('./process-test.js');
-  results =  await execute.executeTest(testConfig);
+  results =  await execute.executeTest(testConfig, siteURL);
 }
 
 
