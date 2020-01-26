@@ -1,6 +1,6 @@
 <h1>Add New Site</h1>
 
-<%= form_with scope: :site, :url => sites_ab_path, local: true do |form| %>
+<%= form_with scope: :site, :url => sites_save_path, local: true do |form| %>
   <p>
     <%= form.label :Site_URL %><br>
     <%= form.text_field :siteURL %>

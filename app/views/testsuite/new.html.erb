@@ -1,6 +1,6 @@
 <h1>Add New Test</h1>
 
-<%= form_with scope: :testsuite, :url => testsuite_ab_path, local: true do |form| %>
+<%= form_with scope: :testsuite, :url => testsuite_save_path, local: true do |form| %>
   <p>
     <%= form.label :TestName %><br>
     <%= form.text_field :TestName %>

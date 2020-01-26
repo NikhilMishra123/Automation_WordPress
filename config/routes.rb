@@ -4,10 +4,12 @@ Rails.application.routes.draw do
   resources :sites, :testsuite, :testweb
  
 	root 'testweb#run'
-
-	post 'testsuite/ab', to: 'testsuite#ab'
-	post 'sites/ab' , to: 'sites#ab'
+	
+	get 'user/signin' , to: 'user#signin'
+	post 'testsuite/save', to: 'testsuite#save'
+	post 'sites/save' , to: 'sites#save'
 	post 'testweb/run' , to: 'testweb#run'
-	get  'testweb/display' , to: 'testweb#display'
-	get  'testweb/failed' , to: 'testweb#failed'
+	get 'testweb/display' , to: 'testweb#display'
+	get 'testweb/failed' , to: 'testweb#failed'
+	post 'user/login' , to: 'user#login'
 end

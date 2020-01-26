@@ -1,7 +1,7 @@
 class SitesController < ApplicationController
 
 	def index
-    @sites = Site.getAllSite(session[:current_user_id])
+    @sites = Site.all
   end
 
   def show
@@ -12,18 +12,20 @@ class SitesController < ApplicationController
   end
 
   def save
+		debugger
     site = siteParams
-		userId  = User.getUser(session[:current_user_id])
-		if userId ==  nil
+		userId  = User.getUser(site["user"])
+		debugger
+		if(userId ==  nil)
 			render "/sites/new"
 		else
-			@sites =	Site.create(
+			debugger
+			Site.create(
 				:siteURL => site["siteURL"],
 				:user =>  userId
 			)
 			redirect_to "/sites/#{@sites.id}"
 		end
-	end
 
   private
     def siteParams

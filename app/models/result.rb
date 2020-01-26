@@ -1,24 +1,36 @@
 class Result < ApplicationRecord
   belongs_to :testsuite
   belongs_to :site
- 
-	def self.fetchPreviousResult(selected_site , selected_tests, test_ids)		
-		previous_results =  { }
-		selected_tests.each do |test|
-			@result = Result.select(:id, :TestResult).where(site: selected_site, testsuite: test).order(:id ).last
-			previous_results[test.TestName] = (@result != nil)? @result.TestResult : 'Never Tested'
+
+	def self.fetchPreviousResult(selectedSite , selectedTests, testIds)		
+		previousResults =  { }
+		selectedTests.each do |test|
+			@result = Result.where(site: selectedSite, testsuite: test).order(:id ).last
+			previousResults[test.TestName] = (@result != nil)? @result.TestResult : 'Never Tested'
 		end
-		return previous_results
+		return previousResults
 	end
 	
-	def self.saveResults(selected_site, selected_tests, results)	
-		selected_tests.each do |test|
+	def self.saveResults(site, tests, results)	
+		tests.each do |test|
 			Result.create(
 				:testsuite => test,
-				:site => selected_site,
+				:site => site,
 				:TestResult => results[test.TestName]
 			)
 			end
 	end
+
+	def self.combineResults(selectedTests, previousResults, results)
+      @finalResult = Array.new
+      selectedTests.each do|test|
+        @finalResult.push({
+                        :testName =>  test.TestName,
+                        :prevResult =>  previousResults[test.TestName],
+                        :result =>  results[test.TestName]
+        })
+      end
+      return @finalResult
+    end
 
 end

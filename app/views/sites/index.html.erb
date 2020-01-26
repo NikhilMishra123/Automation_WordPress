@@ -2,15 +2,13 @@
 
 <table>
   <tr>
-    <th>Sites URL /th>
-    <th>User </th>
+    <th>Sites URL </th>
   </tr>
 
   <% @sites.each do |site| %>
 
     <tr>
       <td><%= site.siteURL %></td>
-      <td><%= site.user %></td>
     </tr>
 
   <% end %>
