@@ -1,4 +1,6 @@
-<h1>Add New Site</h1>
+<center>
+	<h1>Add New Site</h1>
+</center>
 
 <%= form_with scope: :site, :url => sites_save_path, local: true do |form| %>
   <p>
@@ -9,6 +11,6 @@
      <%= form.submit %>
   </p>
 <% end %>
-
-<%= link_to 'All Sites', sites_path %>
+<%= link_to 'Show All Sites', sites_path %>&nbsp&nbsp&nbsp
+<%= link_to 'WordPress Automation Testing ', testweb_index_path %>
 

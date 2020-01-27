@@ -3,20 +3,11 @@ class UserController < ApplicationController
 	def index
 		@users =User.all
 	end 
-
-	def new 
-	end 
 	
 	def signin
 	end
 
-	def save
-    @user = User.new(user_params)
-    @user.save
-    redirect_to "/user/#{@user.id}"
-  end
-	
-  def login
+	def login
     email = params[:user][:email]
     password = params[:user][:password]
     @user = User.userIsPresent(email, password) 

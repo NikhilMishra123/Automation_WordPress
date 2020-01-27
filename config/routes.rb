@@ -5,6 +5,12 @@ Rails.application.routes.draw do
  
 	root 'user#signin'
 
+	get 'testweb/show' ,to: 'testweb#show'
+
+	#get 'testweb/show' , to: 'testweb#show'
+
+	get 'testweb/ab' , to: 'testweb#ab'
+
 	get 'testweb/index' ,to: 'testweb#index'	
 	get 'user/signin' , to: 'user#signin'
 	post 'testsuite/save', to: 'testsuite#save'

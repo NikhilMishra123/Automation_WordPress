@@ -1,18 +1,15 @@
-<h1>User </h1>
+<h1>Users data </h1>
 
 <table>
   <tr>
-    <th>email /th>
+    <th>Email </th>
     <th>password </th>
   </tr>
-
   <% @users.each do |user| %>
-
     <tr>
       <td><%= user.email %></td>
       <td><%= user.password %></td>
     </tr>
-
   <% end %>
 </table>
 

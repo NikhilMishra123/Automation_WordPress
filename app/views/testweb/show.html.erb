@@ -1,0 +1,8 @@
+<h1> Result</h1>
+<% @finalResult.each do |testResult|%>
+	<p>
+	<%= testResult["testName"] %>
+	<%= testResult["prevResult"] %>
+  <%= testResult["result"] %>
+	</p>
+<% end%>

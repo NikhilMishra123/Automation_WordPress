@@ -5,7 +5,11 @@ class SitesController < ApplicationController
   end
 
   def show
-    @sites = Site.find(params[:id])
+		begin
+				@sites = Site.find(params[:id])
+			rescue StandardError => e
+				render :action => "new"
+		end
   end
 
   def new
