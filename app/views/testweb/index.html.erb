@@ -1,0 +1,25 @@
+<center>
+	<i>
+		<h1> WordPress Automation Testing </h1>
+	</i>
+</center>
+<%= form_with(:url => testweb_run_path, method: "get") do %>
+	<h3> Select Site</h3>
+	<p>
+	<% @sites.each do |site| %>
+		<%= site.siteURL %> <%= radio_button_tag 'site_id', site.id %>
+		<br>
+	<%end%>
+	</p>
+	<br> 
+	<h3>Select Testsuites</h3>
+	<p>
+	<% @tests.each do |test| %>
+  	<%= test.TestName %> <%= check_box_tag 'test_ids[]' ,test.id %>
+  	<br>
+	<%end%>
+	</p>
+	<p>
+	<%= submit_tag("Submit") %>
+	</p>
+<%end%>

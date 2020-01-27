@@ -1,19 +1,17 @@
 class TestwebController < ApplicationController
 	
 	def index
-		@sites = Site.where(user: "id")
+		@sites = Site.getAllSite(session[:current_user_id])
 		@tests = Testsuite.all
 	end
 
 	def run
-		siteId =1
-		testIds=Array.new
-		testIds.push(6)
+		siteId = params[:site_id]
+		testIds = params[:test_ids]
 		if(! testIds.any?)
 			debugger
 			redirect_to "/testweb/index"
 		else
-			debugger
 			selectedSite = Site.getSelectedSite(siteId)
 			selectedTests = Testsuite.getSelectedTests(testIds) 
 			results = Testsuite.executeTest(selectedSite, selectedTests)

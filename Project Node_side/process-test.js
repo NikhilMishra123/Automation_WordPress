@@ -38,17 +38,14 @@ async function executeTest(testConfig, siteURL) {
   const result =  await jest.runCLI(jestConfig , projectRootPath);
   const testResultsMetaData  = result.results.testResults;
   var testFileExtension = ".test.js"
-	var extensionLength = testFileExtension.length
 	var results ={}
 	testResultsMetaData.forEach( ( testResults ) => {
 		var testResult = testResults.numPassingTests ? 'Passed' : 'Failed';
     var testFilePath = testResults.testFilePath  ;
     var fileNameAt = testFilePath.lastIndexOf("/")+1;
-    var fileName = testFilePath.substring(fileNameAt,testFilePath.length-extensionLength);
+    var fileName = testFilePath.substring(fileNameAt,testFilePath.length-testFileExtension.length);
     results[fileName] =  testResult ;
-
   });
 	return results
 }
-
 module.exports.executeTest = executeTest;

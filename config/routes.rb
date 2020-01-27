@@ -1,14 +1,15 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
-  resources :sites, :testsuite, :testweb
+  resources :sites, :testsuite
  
-	root 'testweb#run'
-	
+	root 'user#signin'
+
+	get 'testweb/index' ,to: 'testweb#index'	
 	get 'user/signin' , to: 'user#signin'
 	post 'testsuite/save', to: 'testsuite#save'
 	post 'sites/save' , to: 'sites#save'
-	post 'testweb/run' , to: 'testweb#run'
+	get 'testweb/run' , to: 'testweb#run'
 	get 'testweb/display' , to: 'testweb#display'
 	get 'testweb/failed' , to: 'testweb#failed'
 	post 'user/login' , to: 'user#login'
